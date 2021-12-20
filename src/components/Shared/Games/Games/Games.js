@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import rightIcon from "../../../../images/ChevronRight.png";
 import GameCards from "../GameCard/GameCards";
@@ -9,10 +9,18 @@ import "swiper/css/pagination";
 
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, Pagination } from "swiper";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { fetchHighRatedGames, fetchPopularGames } from "../../../../Redux/GameSlice/Fetch/Fetch";
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination]);
 const Games = () => {
-  const number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const { popularGames, highRatedGames } = useSelector((state) => state.Games);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPopularGames());
+    dispatch(fetchHighRatedGames())
+  }, []);
 
   return (
     <div className="container mx-auto py-12">
@@ -48,9 +56,9 @@ const Games = () => {
         }}
         className="mySwiper flex gap-8"
       >
-        {number.map((num, idx) => (
-          <SwiperSlide>
-            <GameCards />
+        {popularGames.map((game) => (
+          <SwiperSlide key={game.id}>
+            <GameCards game={game}/>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -87,9 +95,9 @@ const Games = () => {
         }}
         className="mySwiper flex gap-8"
       >
-        {number.map((num, idx) => (
-          <SwiperSlide>
-            <GameCards />
+        {highRatedGames.map((game) => (
+          <SwiperSlide key={game.id}>
+            <GameCards game={game}/>
           </SwiperSlide>
         ))}
       </Swiper>
