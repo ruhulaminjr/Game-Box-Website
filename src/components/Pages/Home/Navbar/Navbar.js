@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../../images/tv.png";
 import menuicon from "../../../../images/Menu.png";
+import Menu from "./Menu/Menu";
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  if (open) {
+    document.body.style.overflowY = "hidden";
+  }
   return (
     <div className=" py-2 absolute top-2 left-0 z-10 w-full">
       <div className="container mx-auto">
@@ -21,17 +26,18 @@ const Navbar = () => {
           </div>
           <div className=" items-center gap-5 hidden md:flex">
             <button className="text-white text-md font-bold">Sign In</button>
-            <button>
+            <button onClick={() => setOpen(true)}>
               <img src={menuicon} alt="" />
             </button>
           </div>
           <div className="block md:hidden">
-            <button>
+            <button onClick={() => setOpen(true)}>
               <img src={menuicon} alt="" />
             </button>
           </div>
         </div>
       </div>
+      <Menu />
     </div>
   );
 };
