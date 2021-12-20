@@ -3,7 +3,7 @@ import logo from "../../../../images/tv.png";
 import menuicon from "../../../../images/Menu.png";
 const Navbar = () => {
   return (
-    <div className=" py-2 fixed top-2 left-0 z-10 w-full">
+    <div className=" py-2 absolute top-2 left-0 z-10 w-full">
       <div className="container mx-auto">
         <div className="flex items-center justify-between ">
           <div className="flex  items-center gap-2">

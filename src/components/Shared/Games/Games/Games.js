@@ -11,7 +11,10 @@ import "swiper/css/pagination";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { fetchHighRatedGames, fetchPopularGames } from "../../../../Redux/GameSlice/Fetch/Fetch";
+import {
+  fetchHighRatedGames,
+  fetchPopularGames,
+} from "../../../../Redux/GameSlice/Fetch/Fetch";
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination]);
 const Games = () => {
@@ -19,7 +22,7 @@ const Games = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPopularGames());
-    dispatch(fetchHighRatedGames())
+    dispatch(fetchHighRatedGames());
   }, []);
 
   return (
@@ -58,7 +61,7 @@ const Games = () => {
       >
         {popularGames.map((game) => (
           <SwiperSlide key={game.id}>
-            <GameCards game={game}/>
+            <GameCards game={game} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -97,10 +100,10 @@ const Games = () => {
       >
         {highRatedGames.map((game) => (
           <SwiperSlide key={game.id}>
-            <GameCards game={game}/>
+            <GameCards game={game} />
           </SwiperSlide>
         ))}
-      </Swiper>
+     </Swiper>
     </div>
   );
 };
