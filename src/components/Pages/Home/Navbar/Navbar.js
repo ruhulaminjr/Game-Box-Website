@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import logo from "../../../../images/tv.png";
 import menuicon from "../../../../images/Menu.png";
 import Menu from "./Menu/Menu";
+import { Link } from "react-router-dom";
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  if (open) {
-    document.body.style.overflowY = "hidden";
-  }
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className=" py-2 absolute top-2 left-0 z-10 w-full">
       <div className="container mx-auto">
         <div className="flex items-center justify-between ">
-          <div className="flex  items-center gap-2">
+          <Link to="/" className="flex  items-center gap-2">
             <img src={logo} alt="" />
             <h1 className="text-white font-bold text-2xl">Game Box</h1>
-          </div>
+          </Link>
           <div className="hidden md:block">
             <form>
               <input
@@ -25,19 +23,21 @@ const Navbar = () => {
             </form>
           </div>
           <div className=" items-center gap-5 hidden md:flex">
-            <button className="text-white text-md font-bold">Sign In</button>
-            <button onClick={() => setOpen(true)}>
+            <Link to="/register" className="text-white text-md font-bold">
+              Sign In
+            </Link>
+            <button onClick={() => setMenuOpen(true)}>
               <img src={menuicon} alt="" />
             </button>
           </div>
           <div className="block md:hidden">
-            <button onClick={() => setOpen(true)}>
+            <button onClick={() => setMenuOpen(true)}>
               <img src={menuicon} alt="" />
             </button>
           </div>
         </div>
       </div>
-      <Menu />
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     </div>
   );
 };

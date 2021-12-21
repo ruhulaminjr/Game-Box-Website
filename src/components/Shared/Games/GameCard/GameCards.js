@@ -3,7 +3,6 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import "./rate.css";
 const GameCards = ({ game }) => {
-  console.log(game);
   return (
     <Link to={`/game/${game.id}`}>
       <div
