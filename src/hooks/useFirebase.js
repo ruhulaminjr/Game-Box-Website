@@ -79,12 +79,13 @@ const useFirebase = () => {
   }, []);
   return {
     user,
-    authError,
+    Logout,
     token,
     authLoading,
-    Logout,
     GoogleLogin,
     loginWithEmail,
     registerWithEmail,
+    authError,
   };
 };
+export default useFirebase;

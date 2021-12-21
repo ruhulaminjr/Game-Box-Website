@@ -1,15 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchGameDetails, fetchHighRatedGames, fetchPopularGames } from "./Fetch/Fetch";
 
+import {
+  fetchFirebase,
+  fetchGameDetails,
+  fetchHighRatedGames,
+  fetchPopularGames,
+} from "./Fetch/Fetch";
 const initialState = {
   popularGames: [],
   highRatedGames: [],
   searchedGames: [],
   featuresGames: [],
-  purchaseGame:[],
+  purchaseGame: [],
+  FirebaseObj: [],
 };
 
 export const GamesSlice = createSlice({
+ 
+
   name: "Games",
   initialState,
   reducers: {
@@ -29,9 +37,9 @@ export const GamesSlice = createSlice({
     builder.addCase(fetchHighRatedGames.fulfilled, (state, action) => {
       state.highRatedGames = action.payload;
     });
-      builder.addCase(fetchGameDetails.fulfilled, (state, action) => {
-        state.highRatedGames = action.payload;
-      });
+    builder.addCase(fetchGameDetails.fulfilled, (state, action) => {
+      state.highRatedGames = action.payload;
+    });
   },
 });
 // Action creators are generated for each case reducer function

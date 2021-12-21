@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import gamingbg from "../../../images/gamingbg.jpg";
+import { fetchFirebase } from "../../../Redux/GameSlice/Fetch/Fetch";
 const Register = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   const { register, handleSubmit } = useForm();
