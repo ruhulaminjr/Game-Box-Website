@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import gamingbg from "../../../images/gamingbg.jpg";
 const Register = () => {
   const [isNewUser, setIsNewUser] = useState(false);
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <section
       className="bg-blueGray-50 h-screen flex justify-center items-center w-full"
@@ -51,7 +57,7 @@ const Register = () => {
                 <h3>Sign In With Email</h3>
               )}
             </div>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               {isNewUser && (
                 <div className="relative w-full mb-3">
                   <label
@@ -64,6 +70,7 @@ const Register = () => {
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Full-Name"
+                    {...register("Name")}
                     required
                   />
                 </div>
@@ -80,6 +87,8 @@ const Register = () => {
                   type="email"
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
+                  {...register("Email")}
+                  required
                 />
               </div>
               <div className="relative w-full mb-3">
@@ -93,12 +102,20 @@ const Register = () => {
                   type="password"
                   className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
+                  {...register("Password")}
+                  required
                 />
               </div>
               <div className="text-center mt-6">
-                <button className="primary-btn" type="submit">
-                  Register
-                </button>
+                {isNewUser ? (
+                  <button className="primary-btn" type="submit">
+                    Register
+                  </button>
+                ) : (
+                  <button className="primary-btn" type="submit">
+                    Login
+                  </button>
+                )}
               </div>
             </form>
             <div className="flex justify-center py-4">
