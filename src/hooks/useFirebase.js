@@ -48,11 +48,12 @@ const useFirebase = () => {
       .catch((error) => setAuthError(error.message))
       .finally(() => setAuthLoading(false));
   };
-  const GoogleLogin = () => {
+  const GoogleLogin = (navigate, redirectUrl) => {
     setAuthLoading(true);
     signInWithPopup(auth, googleProvider)
       .then(() => {
         setAuthError(false);
+        navigate(redirectUrl);
       })
       .catch((error) => {
         setAuthError(error.message);

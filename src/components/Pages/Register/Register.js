@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import gamingbg from "../../../images/gamingbg.jpg";
 import Navbar from "../Home/Navbar/Navbar";
 const Register = () => {
   const [isNewUser, setIsNewUser] = useState(false);
+  const location = useLocation();
+  const redirectUrl = location.state?.from?.pathname;
   const Navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const {
@@ -54,7 +56,7 @@ const Register = () => {
               <button
                 className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                 type="button"
-                onClick={GoogleLogin}
+                onClick={()=>GoogleLogin(Navigate,redirectUrl)}
               >
                 <img
                   alt="..."
