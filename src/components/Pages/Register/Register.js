@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import gamingbg from "../../../images/gamingbg.jpg";
+import Navbar from "../Home/Navbar/Navbar";
 const Register = () => {
   const [isNewUser, setIsNewUser] = useState(false);
+  const Navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const {
     authLoading,
@@ -14,7 +16,13 @@ const Register = () => {
     authError,
   } = useAuth();
   const onSubmit = (data) => {
-    console.log(data);
+    const {Email,Password,Name} = data;
+    if(isNewUser){
+      registerWithEmail(Email,Password,Navbar,Navigate)
+
+    }else{
+      loginWithEmail(Email,Password,Navigate)
+    }
   };
 
   return (
