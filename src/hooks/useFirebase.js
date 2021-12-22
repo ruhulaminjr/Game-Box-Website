@@ -3,7 +3,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  getIdToken,
   signInWithPopup,
   GoogleAuthProvider,
   updateProfile,
@@ -16,7 +15,6 @@ FirebaseInit();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [authError, setAuthError] = useState(null);
-  const [token, setToken] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
@@ -41,11 +39,14 @@ const useFirebase = () => {
           displayName: name,
         })
           .then((result) => {
-            setUser(result.user);
             setAuthError(null);
             navigate(url);
+            console.log(result)
           })
-          .catch((error) => setAuthError(error.message));
+          .catch((error) => {
+            console.log(error)
+            setAuthError(error.message);
+          });
       })
       .catch((error) => setAuthError(error.message))
       .finally(() => setAuthLoading(false));
@@ -69,10 +70,6 @@ const useFirebase = () => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        getIdToken(currentUser, (token) => {
-          console.log(token);
-          setToken(token);
-        });
       } else {
         setUser({});
       }
@@ -83,7 +80,6 @@ const useFirebase = () => {
   return {
     user,
     Logout,
-    token,
     authLoading,
     GoogleLogin,
     loginWithEmail,

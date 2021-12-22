@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../../../hooks/useAuth";
 import "./menu.css";
 const Menu = ({ menuOpen, setMenuOpen }) => {
-  console.log(menuOpen);
   const { user, Logout } = useAuth();
   return (
     <div>

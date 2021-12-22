@@ -7,7 +7,6 @@ export const fetchPopularGames = createAsyncThunk(
     const response = await axios.get(
       "https://api.rawg.io/api/games?key=40acf6a51cbc493e972438828aaecd9d"
     );
-    console.log(response.data.results);
 
     return await response.data.results;
   }
