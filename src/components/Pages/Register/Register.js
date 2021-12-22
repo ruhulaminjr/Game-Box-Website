@@ -7,7 +7,7 @@ import Navbar from "../Home/Navbar/Navbar";
 const Register = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   const location = useLocation();
-  const redirectUrl = location.state?.from?.pathname;
+  const redirectUrl = location.state?.from?.pathname || "/"
   const Navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const {

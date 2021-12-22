@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../../../../hooks/useAuth";
 import "./menu.css";
 const Menu = ({ menuOpen, setMenuOpen }) => {
   console.log(menuOpen);
+  const { user, Logout } = useAuth();
   return (
     <div>
       <nav
@@ -35,6 +37,31 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                 <span className="ml-2">Dashboard</span>
               </span>
             </Link>
+            {!user.email ? (
+              <Link
+                to="register"
+                className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+              >
+                <span>
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>
+                  <span className="ml-2">Sign In</span>
+                </span>
+              </Link>
+            ) : (
+              <button
+                onClick={Logout}
+                className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+              >
+                <span>
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>
+                  <span className="ml-2">Log Out</span>
+                </span>
+              </button>
+            )}
           </ul>
         </div>
       </nav>
