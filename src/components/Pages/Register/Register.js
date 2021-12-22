@@ -7,7 +7,7 @@ import Navbar from "../Home/Navbar/Navbar";
 const Register = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   const location = useLocation();
-  const redirectUrl = location.state?.from?.pathname || "/"
+  const redirectUrl = location.state?.from?.pathname || "/";
   const Navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const {
@@ -18,15 +18,22 @@ const Register = () => {
     authError,
   } = useAuth();
   const onSubmit = (data) => {
-    const {Email,Password,Name} = data;
-    if(isNewUser){
-      registerWithEmail(Email,Password,Navbar,Navigate)
-
-    }else{
-      loginWithEmail(Email,Password,Navigate)
+    const { Email, Password, Name } = data;
+    if (isNewUser) {
+      registerWithEmail(Email, Password, Navbar, Navigate,redirectUrl);
+    } else {
+      loginWithEmail(Email, Password, Navigate,redirectUrl);
     }
   };
-
+if(authLoading){
+  return (
+    <div class="flex justify-center">
+      <span class="circle animate-loader"></span>
+      <span class="circle animate-loader animation-delay-200"></span>
+      <span class="circle animate-loader animation-delay-400"></span>
+    </div>
+  );
+}
   return (
     <section
       className="bg-blueGray-50 h-screen flex justify-center items-center w-full"
@@ -56,7 +63,7 @@ const Register = () => {
               <button
                 className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                 type="button"
-                onClick={()=>GoogleLogin(Navigate,redirectUrl)}
+                onClick={() => GoogleLogin(Navigate, redirectUrl)}
               >
                 <img
                   alt="..."
@@ -160,6 +167,11 @@ const Register = () => {
                 </h5>
               )}
             </div>
+            {authError && (
+              <p className="text-center text-red-700 text-lg font-bold">
+                {authError}
+              </p>
+            )}
           </div>
         </div>
       </div>
