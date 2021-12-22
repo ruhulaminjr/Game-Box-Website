@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import useFirebase from "../../../hooks/useFirebase";
 
 export const fetchPopularGames = createAsyncThunk(
   "Games/fetchpopulargames",
