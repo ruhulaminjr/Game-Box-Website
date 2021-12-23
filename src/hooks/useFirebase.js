@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -39,12 +40,26 @@ const useFirebase = () => {
           displayName: name,
         })
           .then((result) => {
-            setAuthError(null);
-            navigate(url);
-            console.log(result)
+            axios
+              .post("http://localhost:5000/saveusers", {
+                email,
+                name,
+                role: "user",
+              })
+              .then((result) => {
+                if (result.acknowledged) {
+                  setAuthError(null);
+                  navigate(url);
+                  console.log(result);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                setAuthError(error.message);
+              });
           })
           .catch((error) => {
-            console.log(error)
+            console.log(error);
             setAuthError(error.message);
           });
       })

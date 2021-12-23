@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const {user} = useAuth()
+  const { user } = useAuth();
   return (
     <div className=" py-2 absolute top-2 left-0 z-10 w-full">
       <div className="container mx-auto">
