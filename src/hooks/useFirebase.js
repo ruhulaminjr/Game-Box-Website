@@ -17,6 +17,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [authError, setAuthError] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [admin, setAdmin] = useState(false);
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
   const loginWithEmail = (email, password, navigate, url) => {
@@ -47,7 +48,7 @@ const useFirebase = () => {
                 role: "user",
               })
               .then((result) => {
-                if (result.acknowledged) {
+                if (result.data.acknowledged) {
                   setAuthError(null);
                   navigate(url);
                   console.log(result);
@@ -91,7 +92,12 @@ const useFirebase = () => {
       setAuthLoading(false);
     });
     return () => unsubscribe;
-  }, []);
+  }, [auth]);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/${user.email}`).then((result) => {
+      setAdmin(result.data.admin);
+    });
+  }, [user]);
   return {
     user,
     Logout,
