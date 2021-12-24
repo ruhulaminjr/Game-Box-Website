@@ -58,7 +58,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                 >
                   <i class="fas fa-cart-plus"></i>
                   <span>
-                    <span className="ml-2">My Orders</span>
+                    <span className="ml-2">My Carts</span>
                   </span>
                 </Link>
                 <Link

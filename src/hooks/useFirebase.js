@@ -73,11 +73,12 @@ const useFirebase = () => {
       .then(() => {
         setAuthError(false);
         navigate(redirectUrl);
+
       })
       .catch((error) => {
         setAuthError(error.message);
       })
-      .finally(setAuthError(false));
+      .finally(setAuthLoading(false));
   };
   const Logout = () => {
     signOut(auth);

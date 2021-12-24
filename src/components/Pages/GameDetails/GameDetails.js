@@ -6,9 +6,16 @@ import xbox from "../../../images/xbox.png";
 import steam from "../../../images/steam.png";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { AddtoCart } from "../../../Redux/GameSlice/GamesSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const GameDetails = () => {
   const [game, setGame] = useState({});
   const [screenshot, setScreenshot] = useState([]);
+  const [isCart, setIsCart] = useState(false);
+  const dispatch = useDispatch();
+  const { myCarts } = useSelector((state) => state.Games);
+  console.log(isCart);
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -16,8 +23,11 @@ const GameDetails = () => {
         `https://api.rawg.io/api/games/${id}?key=40acf6a51cbc493e972438828aaecd9d`
       )
       .then((result) => {
-        console.log(result.data);
         setGame(result.data);
+        const findCarts = myCarts.find((item) => item.id == result.data.id);
+        if (findCarts) {
+          setIsCart(true);
+        }
       });
     axios
       .get(
@@ -25,9 +35,8 @@ const GameDetails = () => {
       )
       .then((result) => {
         setScreenshot(result.data.results);
-        console.log(result.data);
       });
-  }, [id]);
+  }, [id,myCarts]);
   return (
     <div>
       <Navbar />
@@ -52,14 +61,31 @@ const GameDetails = () => {
                 <img src={xbox} alt="" width="40px" />
                 <img src={steam} alt="" width="40px" />
               </div>
-              <button className="primary-btn">$29 Buy Now</button>
+              {!isCart ? (
+                <button
+                  className="primary-btn"
+                  onClick={() => dispatch(AddtoCart(game))}
+                >
+                  $29 Add To Cart
+                </button>
+              ) : (
+                <>
+                  <button className="primary-btn">Place Orders</button>
+                </>
+              )}
+
               <p className="text-white font-bold text-base">
                 {game.description_raw}
               </p>
               <h2 className="text-white font-bold text-3xl">Screenshot</h2>
               <div className="flex flex-wrap gap-4 items-center justify-center">
                 {screenshot.map((item) => (
-                  <img src={item.image} alt="" key={item.id} className="xs:w-full md:w-96"/>
+                  <img
+                    src={item.image}
+                    alt=""
+                    key={item.id}
+                    className="xs:w-full md:w-96"
+                  />
                 ))}
               </div>
             </div>
