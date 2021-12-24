@@ -25,9 +25,9 @@ const Navbar = () => {
             </form>
           </div>
           <div className=" items-center gap-5 hidden md:flex">
-            <Link to="/register" className="text-white text-md font-bold">
+            <span className="text-white text-md font-bold">
               {user.displayName}
-            </Link>
+            </span>
             <button onClick={() => setMenuOpen(true)}>
               <img src={menuicon} alt="" />
             </button>

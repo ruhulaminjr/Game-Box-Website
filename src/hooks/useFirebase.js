@@ -94,8 +94,9 @@ const useFirebase = () => {
     return () => unsubscribe;
   }, [auth]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/${user.email}`).then((result) => {
+    axios.get(`http://localhost:5000/getadmin/${user.email}`).then((result) => {
       setAdmin(result.data.admin);
+      console.log(result.data);
     });
   }, [user]);
   return {
@@ -106,6 +107,7 @@ const useFirebase = () => {
     loginWithEmail,
     registerWithEmail,
     authError,
+    admin,
   };
 };
 export default useFirebase;
