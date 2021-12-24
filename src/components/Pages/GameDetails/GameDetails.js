@@ -36,7 +36,7 @@ const GameDetails = () => {
       .then((result) => {
         setScreenshot(result.data.results);
       });
-  }, [id,myCarts]);
+  }, [id, myCarts]);
   return (
     <div>
       <Navbar />

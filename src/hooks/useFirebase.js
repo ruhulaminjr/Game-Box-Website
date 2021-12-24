@@ -73,7 +73,6 @@ const useFirebase = () => {
       .then(() => {
         setAuthError(false);
         navigate(redirectUrl);
-
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -99,7 +98,7 @@ const useFirebase = () => {
       setAdmin(result.data.admin);
       console.log(result.data);
     });
-  }, [user]);
+  }, [user, authLoading]);
   return {
     user,
     Logout,
