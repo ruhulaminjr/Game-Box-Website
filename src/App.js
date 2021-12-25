@@ -3,6 +3,9 @@ import "./App.css";
 import AdminRoute from "./components/Pages/AdminRoute/AdminRoute";
 import MakeAdmin from "./components/Pages/Dashboard/AdminDashboard/MakeAdmin/MakeAdmin";
 import ManageOrders from "./components/Pages/Dashboard/AdminDashboard/ManageOrders/ManageOrders";
+import AddReview from "./components/Pages/Dashboard/UserDashboard/AddReview/AddReview";
+import MyOrders from "./components/Pages/Dashboard/UserDashboard/MyOrders/MyOrders";
+import Pay from "./components/Pages/Dashboard/UserDashboard/Pay/Pay";
 import GameDetails from "./components/Pages/GameDetails/GameDetails";
 import Home from "./components/Pages/Home/Home/Home";
 import Register from "./components/Pages/Register/Register";
@@ -43,6 +46,31 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
+          {/* user dashboard route  */}
+          <Route
+            path="/pay"
+            element={
+              <PrivateRoute>
+                <Pay />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/mycarts"
+            element={
+              <PrivateRoute>
+                <MyOrders />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/addreview"
+            element={
+              <PrivateRoute>
+               <AddReview/>
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

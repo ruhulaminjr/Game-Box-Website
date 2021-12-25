@@ -1,4 +1,3 @@
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -37,6 +36,7 @@ export default function Header() {
                 "url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)",
             }}
             className="w-full bg-center bg-cover h-96"
+            key={idx}
           >
             <div className="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
               <div className="text-center flex flex-col gap-5 items-center">

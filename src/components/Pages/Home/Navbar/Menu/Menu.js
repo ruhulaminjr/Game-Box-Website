@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../../../hooks/useAuth";
 import "./menu.css";
 const Menu = ({ menuOpen, setMenuOpen }) => {
-  const { user, Logout,admin } = useAuth();
+  const { user, Logout, admin } = useAuth();
   return (
     <div>
       <nav
@@ -14,72 +14,76 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
         <div className="mt-10 mb-4">
           <div className="flex items-center justify-center mb-8">
             <button onClick={() => setMenuOpen(false)}>
-              <i class="fas fa-times text-white text-3xl hover:scale-150 transition-transform"></i>
+              <i className="fas fa-times text-white text-3xl hover:scale-150 transition-transform"></i>
             </button>
           </div>
 
           <ul className="ml-4">
             {/* admin link  */}
-            {admin ? (
+            {user.email && (
               <>
-                <Link
-                  to="makeadmin"
-                  className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
-                >
-                  <i class="fas fa-users-cog"></i>
-                  <span>
-                    <span className="ml-2">Make Admin</span>
-                  </span>
-                </Link>
-                <Link
-                  to="manageorders"
-                  className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
-                >
-                  <i class="fas fa-cart-arrow-down"></i>
-                  <span>
-                    <span className="ml-2">Manage Orders</span>
-                  </span>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="pay"
-                  className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
-                >
-                  <i class="fab fa-paypal"></i>
-                  <span>
-                    <span className="ml-2">Pay</span>
-                  </span>
-                </Link>
-                <Link
-                  to="myorders"
-                  className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
-                >
-                  <i class="fas fa-cart-plus"></i>
-                  <span>
-                    <span className="ml-2">My Carts</span>
-                  </span>
-                </Link>
-                <Link
-                  to="addreview"
-                  className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
-                >
-                  <i class="fas fa-star-half-alt"></i>
-                  <span>
-                    <span className="ml-2">Add Review</span>
-                  </span>
-                </Link>
+                {" "}
+                {admin ? (
+                  <>
+                    <Link
+                      to="makeadmin"
+                      className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+                    >
+                      <i className="fas fa-users-cog"></i>
+                      <span>
+                        <span className="ml-2">Make Admin</span>
+                      </span>
+                    </Link>
+                    <Link
+                      to="manageorders"
+                      className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+                    >
+                      <i className="fas fa-cart-arrow-down"></i>
+                      <span>
+                        <span className="ml-2">Manage Orders</span>
+                      </span>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/pay"
+                      className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+                    >
+                      <i className="fab fa-paypal"></i>
+                      <span>
+                        <span className="ml-2">Pay</span>
+                      </span>
+                    </Link>
+                    <Link
+                      to="/mycarts"
+                      className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+                    >
+                      <i className="fas fa-cart-plus"></i>
+                      <span>
+                        <span className="ml-2">My Carts</span>
+                      </span>
+                    </Link>
+                    <Link
+                      to="/addreview"
+                      className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
+                    >
+                      <i className="fas fa-star-half-alt"></i>
+                      <span>
+                        <span className="ml-2">Add Review</span>
+                      </span>
+                    </Link>
+                  </>
+                )}
               </>
             )}
-
             {!user.email ? (
               <Link
                 to="register"
                 className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
               >
                 <span>
-                  <i class="fas fa-sign-in-alt"></i>
+                  <i className="fas fa-sign-in-alt"></i>
                 </span>
                 <span>
                   <span className="ml-2">Sign In</span>
@@ -91,7 +95,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                 className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
               >
                 <span>
-                  <i class="fas fa-sign-in-alt"></i>
+                  <i className="fas fa-sign-in-alt"></i>
                 </span>
                 <span>
                   <span className="ml-2">Log Out</span>

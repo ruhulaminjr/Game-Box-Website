@@ -12,10 +12,8 @@ import { useSelector } from "react-redux";
 const GameDetails = () => {
   const [game, setGame] = useState({});
   const [screenshot, setScreenshot] = useState([]);
-  const [isCart, setIsCart] = useState(false);
   const dispatch = useDispatch();
   const { myCarts } = useSelector((state) => state.Games);
-  console.log(isCart);
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -24,10 +22,6 @@ const GameDetails = () => {
       )
       .then((result) => {
         setGame(result.data);
-        const findCarts = myCarts.find((item) => item.id == result.data.id);
-        if (findCarts) {
-          setIsCart(true);
-        }
       });
     axios
       .get(
@@ -61,19 +55,12 @@ const GameDetails = () => {
                 <img src={xbox} alt="" width="40px" />
                 <img src={steam} alt="" width="40px" />
               </div>
-              {!isCart ? (
                 <button
                   className="primary-btn"
                   onClick={() => dispatch(AddtoCart(game))}
                 >
                   $29 Add To Cart
                 </button>
-              ) : (
-                <>
-                  <button className="primary-btn">Place Orders</button>
-                </>
-              )}
-
               <p className="text-white font-bold text-base">
                 {game.description_raw}
               </p>

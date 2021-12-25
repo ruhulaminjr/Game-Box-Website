@@ -47,7 +47,7 @@ const Videos = () => {
         className="mySwiper flex gap-8"
       >
         {number.map((num, idx) => (
-          <SwiperSlide>
+          <SwiperSlide key={idx}>
             <Video />
           </SwiperSlide>
         ))}

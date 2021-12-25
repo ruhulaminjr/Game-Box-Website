@@ -5,10 +5,10 @@ const Footer = () => {
     <div className="container mx-auto mt-12 mb-4">
       <div className="flex items-center justify-center flex-col gap-3">
         <div className="flex gap-4 items-center justify-center">
-          <i class="fab fa-facebook-square"></i>
-          <i class="fab fa-instagram-square"></i>
-          <i class="fab fa-twitter-square"></i>
-          <i class="fab fa-youtube"></i>
+          <i className="fab fa-facebook-square"></i>
+          <i className="fab fa-instagram-square"></i>
+          <i className="fab fa-twitter-square"></i>
+          <i className="fab fa-youtube"></i>
         </div>
         <div className="flex gap-4 md:gap-6 flex-wrap items-center justify-center">
           <p className="text-gray-900 font-bold text-md">Conditions of Use</p>
