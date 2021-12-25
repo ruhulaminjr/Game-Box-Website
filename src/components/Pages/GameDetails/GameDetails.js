@@ -13,11 +13,13 @@ const GameDetails = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
+  const prices = Math.floor(Math.random() * 70);
   const addToCartHandler = (item) => {
+    item.price = prices;
     item.email = user.email;
     item.status = "pending";
     axios.post("http://localhost:5000/addtocart", item).then((resutl) => {
-      if (resutl.insertedId) {
+      if (resutl.data.insertedId) {
         navigate("/");
       }
     });
@@ -37,7 +39,7 @@ const GameDetails = () => {
       .then((result) => {
         setScreenshot(result.data.results);
       });
-  }, [id]);
+  }, []);
   return (
     <div>
       <Navbar />
@@ -66,7 +68,7 @@ const GameDetails = () => {
                 className="primary-btn"
                 onClick={() => addToCartHandler(game)}
               >
-                $29 Add To Cart
+                ${prices} Add To Cart
               </button>
               <p className="text-white font-bold text-base">
                 {game.description_raw}
