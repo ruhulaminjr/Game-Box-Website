@@ -4,17 +4,24 @@ import Navbar from "../Home/Navbar/Navbar";
 import playstation from "../../../images/playstation.png";
 import xbox from "../../../images/xbox.png";
 import steam from "../../../images/steam.png";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { AddtoCart } from "../../../Redux/GameSlice/GamesSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import useAuth from "../../../hooks/useAuth";
 const GameDetails = () => {
   const [game, setGame] = useState({});
   const [screenshot, setScreenshot] = useState([]);
-  const dispatch = useDispatch();
-  const { myCarts } = useSelector((state) => state.Games);
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const addToCartHandler = (item) => {
+    item.email = user.email;
+    item.status = "pending";
+    axios.post("http://localhost:5000/addtocart", item).then((resutl) => {
+      if (resutl.insertedId) {
+        navigate("/");
+      }
+    });
+  };
   useEffect(() => {
     axios
       .get(
@@ -30,7 +37,7 @@ const GameDetails = () => {
       .then((result) => {
         setScreenshot(result.data.results);
       });
-  }, [id, myCarts]);
+  }, [id]);
   return (
     <div>
       <Navbar />
@@ -55,12 +62,12 @@ const GameDetails = () => {
                 <img src={xbox} alt="" width="40px" />
                 <img src={steam} alt="" width="40px" />
               </div>
-                <button
-                  className="primary-btn"
-                  onClick={() => dispatch(AddtoCart(game))}
-                >
-                  $29 Add To Cart
-                </button>
+              <button
+                className="primary-btn"
+                onClick={() => addToCartHandler(game)}
+              >
+                $29 Add To Cart
+              </button>
               <p className="text-white font-bold text-base">
                 {game.description_raw}
               </p>
