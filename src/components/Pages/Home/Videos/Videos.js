@@ -11,10 +11,12 @@ import "swiper/css/navigation";
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import rightIcon from "../../../../images/ChevronRight.png";
 import Video from "./Video/Video";
+import { useSelector } from "react-redux";
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 const Videos = () => {
-  const number = [1, 2, 3, 4, 5, 6];
+    const { gameVideos } = useSelector((state) => state.Games);
+
 
   return (
     <div className="container mx-auto py-4">
@@ -46,9 +48,11 @@ const Videos = () => {
         }}
         className="mySwiper flex gap-8"
       >
-        {number.map((num, idx) => (
-          <SwiperSlide key={idx}>
-            <Video />
+        {gameVideos.map((game) => (
+          <SwiperSlide key={game.id}>
+            <div className="py-6">
+              <Video game={game}/>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

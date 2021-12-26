@@ -33,3 +33,13 @@ export const fetchGameDetails = createAsyncThunk(
     return await response.data.results;
   }
 );
+
+export const fetchGameVideo = createAsyncThunk(
+  "Games/fetchGameVideo",
+  async () => {
+    const response = await axios.get(
+      "https://raw.githubusercontent.com/ruhulaminjr/Website-Images/main/api/gamedata.json"
+    );
+    return await response.data
+  }
+);

@@ -8,19 +8,26 @@ import "swiper/css/navigation";
 import videoIcon from "../../../../images/Icon.png";
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGameVideo } from "../../../../Redux/GameSlice/Fetch/Fetch";
 
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 export default function Header() {
-  const number = [1, 2, 3, 4, 5, 6];
+  const { gameVideos } = useSelector((state) => state.Games);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchGameVideo());
+  }, []);
   return (
     <>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 2000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -29,19 +36,19 @@ export default function Header() {
         navigation={true}
         className="mySwiper absolute top-0 left-0"
       >
-        {number.map((num, idx) => (
+        {gameVideos.map((game) => (
           <SwiperSlide
             style={{
               backgroundImage:
-                "url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)",
+                `url(${game.img})`,
             }}
             className="w-full bg-center bg-cover h-96"
-            key={idx}
+            key={game.id}
           >
             <div className="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
               <div className="text-center flex flex-col gap-5 items-center">
                 <h1 className="text-2xl md:text-4xl font-semibold text-white uppercase lg:text-3xl">
-                  John Wick 3 : Parabellum
+                  {game.name}
                 </h1>
                 <div>
                   <button className="primary-btn flex items-center gap-2">

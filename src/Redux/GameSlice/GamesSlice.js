@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import {
   fetchGameDetails,
+  fetchGameVideo,
   fetchHighRatedGames,
   fetchPopularGames,
 } from "./Fetch/Fetch";
@@ -10,6 +11,7 @@ const initialState = {
   highRatedGames: [],
   searchedGames: [],
   featuresGames: [],
+  gameVideos: [],
   purchaseGame: [],
   myCarts: [],
 };
@@ -32,6 +34,9 @@ export const GamesSlice = createSlice({
     });
     builder.addCase(fetchGameDetails.fulfilled, (state, action) => {
       state.highRatedGames = action.payload;
+    });
+    builder.addCase(fetchGameVideo.fulfilled, (state, action) => {
+      state.gameVideos = action.payload;
     });
   },
 });

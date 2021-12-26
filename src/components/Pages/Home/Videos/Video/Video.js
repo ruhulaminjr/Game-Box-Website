@@ -1,11 +1,11 @@
 import React from "react";
 import playIcon from "../../../../../images/playIcon.png";
-const Video = () => {
+const Video = ({game}) => {
   return (
     <div>
       <div className="relative">
         <img
-          src="https://www.dsogaming.com/wp-content/uploads/2019/08/ECkOGrGXsAAfKjM.jpg"
+          src={game.img}
           alt=""
           className=" w-full"
         />
@@ -17,7 +17,7 @@ const Video = () => {
         />
       </div>
       <p className="font-bold text-gray-800 py-2">
-        The Suicide Squad : John Cena Interview
+        {game.name}
       </p>
     </div>
   );
