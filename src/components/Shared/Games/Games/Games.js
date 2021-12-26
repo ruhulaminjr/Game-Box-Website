@@ -15,6 +15,7 @@ import {
   fetchHighRatedGames,
   fetchPopularGames,
 } from "../../../../Redux/GameSlice/Fetch/Fetch";
+import { Link } from "react-router-dom";
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination]);
 const Games = () => {
@@ -29,9 +30,12 @@ const Games = () => {
     <div className="container mx-auto py-12">
       <div className="flex items-center justify-between flex-wrap">
         <h1 className="text-2xl text-gray-900 font-bold">Popular Games</h1>
-        <button className="flex gap-2 text-red-700 items-center">
+        <Link
+          to={`/seemore/popular`}
+          className="flex gap-2 text-red-700 items-center"
+        >
           See more <img src={rightIcon} alt="" />
-        </button>
+        </Link>
       </div>
       <Swiper
         slidesPerView={1}

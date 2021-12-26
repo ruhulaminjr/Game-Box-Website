@@ -10,6 +10,7 @@ import GameDetails from "./components/Pages/GameDetails/GameDetails";
 import Home from "./components/Pages/Home/Home/Home";
 import Register from "./components/Pages/Register/Register";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import SeeMore from "./components/SeeMore/SeeMore";
 import AuthProvider from "./Context/AuthProvider";
 function App() {
   return (
@@ -67,10 +68,11 @@ function App() {
             path="/addreview"
             element={
               <PrivateRoute>
-               <AddReview/>
+                <AddReview />
               </PrivateRoute>
             }
           />
+          <Route path="/seemore/:category" element={<SeeMore />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

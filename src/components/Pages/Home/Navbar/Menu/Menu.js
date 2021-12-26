@@ -64,7 +64,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                         <span className="ml-2">My Carts</span>
                       </span>
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/addreview"
                       className="flex items-center mb-2 px-4 py-4 text-gray-100 flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg"
                     >
@@ -72,7 +72,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                       <span>
                         <span className="ml-2">Add Review</span>
                       </span>
-                    </Link>
+                    </Link> */}
                   </>
                 )}
               </>
