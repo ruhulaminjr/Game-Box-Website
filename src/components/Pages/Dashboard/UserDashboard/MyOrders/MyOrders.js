@@ -43,9 +43,7 @@ const MyOrders = () => {
                       <th className="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                         Name
                       </th>
-                      <th className="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                        Email
-                      </th>
+
                       <th className="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                         Status
                       </th>
@@ -58,17 +56,13 @@ const MyOrders = () => {
 
                   <tbody className="bg-white">
                     {carts.map((item) => (
-                      <tr>
+                      <tr key={item._id}>
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div className="text-sm leading-5 text-gray-500">
                             {item.name}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="text-sm leading-5 text-gray-500">
-                            {item.email}
-                          </div>
-                        </td>
+
                         {item.status === "pending" ? (
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <span className="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">

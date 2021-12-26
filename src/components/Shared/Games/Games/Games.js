@@ -23,7 +23,7 @@ const Games = () => {
   useEffect(() => {
     dispatch(fetchPopularGames());
     dispatch(fetchHighRatedGames());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container mx-auto py-12">
