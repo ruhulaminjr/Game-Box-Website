@@ -15,8 +15,7 @@ import { useSelector } from "react-redux";
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 const Videos = () => {
-    const { gameVideos } = useSelector((state) => state.Games);
-
+  const { gameVideos } = useSelector((state) => state.Games);
 
   return (
     <div className="container mx-auto py-4">
@@ -26,36 +25,11 @@ const Videos = () => {
           See more <img src={rightIcon} alt="" />
         </button>
       </div>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 50,
-          },
-        }}
-        className="mySwiper flex gap-8"
-      >
-        {gameVideos.map((game) => (
-          <SwiperSlide key={game.id}>
-            <div className="py-6">
-              <Video game={game}/>
-            </div>
-          </SwiperSlide>
+      <div className="py-6 grid xs:grid-cols-1 md:grid-cols-3 gap-5">
+        {gameVideos.slice(0,3).map((game) => (
+          <Video game={game} />
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };

@@ -59,9 +59,11 @@ const Games = () => {
         }}
         className="mySwiper flex gap-8"
       >
-        {popularGames.map((game) => (
+        {popularGames.slice(0, 11).map((game) => (
           <SwiperSlide key={game.id}>
-            <GameCards game={game} />
+            <div className="py-8">
+              <GameCards game={game} />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -98,12 +100,14 @@ const Games = () => {
         }}
         className="mySwiper flex gap-8"
       >
-        {highRatedGames.map((game) => (
+        {highRatedGames.slice(0, 10).map((game) => (
           <SwiperSlide key={game.id}>
-            <GameCards game={game} />
+            <div className="py-8">
+              <GameCards game={game} />
+            </div>
           </SwiperSlide>
         ))}
-     </Swiper>
+      </Swiper>
     </div>
   );
 };
