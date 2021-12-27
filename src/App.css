@@ -107,5 +107,6 @@
   }
   .modal__video-style {
     height: auto;
+    height: 300px;
   }
 }

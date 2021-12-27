@@ -4,11 +4,15 @@ import menuicon from "../../../../images/Menu.png";
 import Menu from "./Menu/Menu";
 import { Link } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
-const Navbar = () => {
+const Navbar = ({ isbg }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useAuth();
   return (
-    <div className=" py-2 absolute top-2 left-0 z-10 w-full">
+    <div
+      className={`py-2 absolute top-2 left-0 z-10 w-full ${
+        isbg ? "bg-gray-800" : ""
+      }`}
+    >
       <div className="container mx-auto">
         <div className="flex items-center justify-between ">
           <Link to="/" className="flex  items-center gap-2">
