@@ -16,7 +16,7 @@ export const fetchHighRatedGames = createAsyncThunk(
   "Games/fetchRatedgames",
   async () => {
     const response = await axios.get(
-      "https://api.rawg.io/api/games?key=40acf6a51cbc493e972438828aaecd9d&ordering=-rating"
+      "https://api.rawg.io/api/games?key=40acf6a51cbc493e972438828aaecd9d&dates=2019-10-10,2021-10-10&ordering=-added"
     );
 
     return await response.data.results;

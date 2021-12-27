@@ -73,10 +73,13 @@ const Games = () => {
       </Swiper>
       {/* higest rated games  */}
       <div className="flex items-center justify-between flex-wrap my-5">
-        <h1 className="text-2xl text-gray-900 font-bold">Highest Rated</h1>
-        <button className="flex gap-2 text-red-700 items-center">
+        <h1 className="text-2xl text-gray-900 font-bold">Trending Games</h1>
+        <Link
+          to={`/seemore/rated`}
+          className="flex gap-2 text-red-700 items-center"
+        >
           See more <img src={rightIcon} alt="" />
-        </button>
+        </Link>
       </div>
       <Swiper
         slidesPerView={1}

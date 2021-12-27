@@ -10,7 +10,7 @@ const Navbar = ({ isbg }) => {
   return (
     <div
       className={`py-2 absolute top-2 left-0 z-10 w-full ${
-        isbg ? "bg-gray-800" : ""
+        isbg ? "bg-gray-700" : ""
       }`}
     >
       <div className="container mx-auto">

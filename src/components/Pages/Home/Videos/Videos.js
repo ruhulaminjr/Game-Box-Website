@@ -15,9 +15,7 @@ useEffect(() => {
     <div className="container mx-auto py-4">
       <div className="flex items-center justify-between flex-wrap my-5">
         <h1 className="text-2xl text-gray-900 font-bold">Exclusive Videos</h1>
-        <button className="flex gap-2 text-red-700 items-center">
-          See more <img src={rightIcon} alt="" />
-        </button>
+      
       </div>
       <div className="py-6 grid xs:grid-cols-1 md:grid-cols-3 gap-5">
         {gameVideos.slice(0,3).map((game) => (
