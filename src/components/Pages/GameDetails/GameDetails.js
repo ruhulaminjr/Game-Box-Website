@@ -18,11 +18,13 @@ const GameDetails = () => {
     item.price = prices;
     item.email = user.email;
     item.status = "pending";
-    axios.post("http://localhost:5000/addtocart", item).then((resutl) => {
-      if (resutl.data.insertedId) {
-        navigate("/");
-      }
-    });
+    axios
+      .post("https://pacific-harbor-02002.herokuapp.com/addtocart", item)
+      .then((resutl) => {
+        if (resutl.data.insertedId) {
+          navigate("/");
+        }
+      });
   };
   useEffect(() => {
     axios

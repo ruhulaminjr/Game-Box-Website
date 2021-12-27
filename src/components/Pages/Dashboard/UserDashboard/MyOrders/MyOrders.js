@@ -10,16 +10,20 @@ const MyOrders = () => {
   const [render, setRerender] = useState(false);
   const { user } = useAuth();
   const cartItemDeleteHandler = (id) => {
-    axios.delete(`http://localhost:5000/cartdelete/${id}`).then((result) => {
-      if (result.data.deletedCount > 0) {
-        setRerender(!render);
-      }
-    });
+    axios
+      .delete(`https://pacific-harbor-02002.herokuapp.com/cartdelete/${id}`)
+      .then((result) => {
+        if (result.data.deletedCount > 0) {
+          setRerender(!render);
+        }
+      });
   };
   useEffect(() => {
-    axios.get(`http://localhost:5000/getcarts/${user.email}`).then((result) => {
-      setCarts(result.data);
-    });
+    axios
+      .get(`https://pacific-harbor-02002.herokuapp.com/getcarts/${user.email}`)
+      .then((result) => {
+        setCarts(result.data);
+      });
   }, [user, render]);
   return (
     <div className="bg-gray-900 h-screen w-screen">

@@ -7,25 +7,31 @@ const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
   const [render, setRerender] = useState(false);
   const cartItemDeleteHandler = (id) => {
-    axios.delete(`http://localhost:5000/cartdelete/${id}`).then((result) => {
-      console.log(result, "cart delete");
-      if (result.data.deletedCount > 0) {
-        setRerender(!render);
-      }
-    });
+    axios
+      .delete(`https://pacific-harbor-02002.herokuapp.com/cartdelete/${id}`)
+      .then((result) => {
+        console.log(result, "cart delete");
+        if (result.data.deletedCount > 0) {
+          setRerender(!render);
+        }
+      });
   };
   const orderApproveHandler = (id) => {
-    axios.put(`http://localhost:5000/approveCart/${id}`).then((result) => {
-      if (result.data.modifiedCount) {
-        setRerender(!render);
-      }
-    });
+    axios
+      .put(`https://pacific-harbor-02002.herokuapp.com/approveCart/${id}`)
+      .then((result) => {
+        if (result.data.modifiedCount) {
+          setRerender(!render);
+        }
+      });
   };
   useEffect(() => {
-    axios.get("http://localhost:5000/getcarts").then((result) => {
-      setOrders(result.data);
-      console.log(result.data);
-    });
+    axios
+      .get("https://pacific-harbor-02002.herokuapp.com/getcarts")
+      .then((result) => {
+        setOrders(result.data);
+        console.log(result.data);
+      });
   }, [render]);
   return (
     <div className="bg-gray-900 h-screen w-screen">

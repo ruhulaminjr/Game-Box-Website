@@ -42,7 +42,7 @@ const useFirebase = () => {
         })
           .then((result) => {
             axios
-              .post("http://localhost:5000/saveusers", {
+              .post("https://pacific-harbor-02002.herokuapp.com/saveusers", {
                 email,
                 name,
                 role: "user",
@@ -94,10 +94,12 @@ const useFirebase = () => {
     return () => unsubscribe;
   }, [auth]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/getadmin/${user.email}`).then((result) => {
-      setAdmin(result.data.admin);
-      console.log(result.data);
-    });
+    axios
+      .get(`https://pacific-harbor-02002.herokuapp.com/${user.email}`)
+      .then((result) => {
+        setAdmin(result.data.admin);
+        console.log(result.data);
+      });
   }, [user, authLoading]);
   return {
     user,

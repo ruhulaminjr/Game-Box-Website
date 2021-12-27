@@ -5,14 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import adminbg from "../../../../../images/makeadminbg.jpg";
 const MakeAdmin = () => {
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .get(`http://localhost:5000/makeadmin/${data.email}`)
+      .get(`https://pacific-harbor-02002.herokuapp.com/makeadmin/${data.email}`)
       .then((result) => {
-        if(result.data.acknowledged){
-          navigate("/")
+        if (result.data.acknowledged) {
+          navigate("/");
         }
       })
       .catch((error) => {
