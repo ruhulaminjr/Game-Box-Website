@@ -30,7 +30,6 @@ const ManageOrders = () => {
       .get("https://pacific-harbor-02002.herokuapp.com/getcarts")
       .then((result) => {
         setOrders(result.data);
-        console.log(result.data);
       });
   }, [render]);
   return (

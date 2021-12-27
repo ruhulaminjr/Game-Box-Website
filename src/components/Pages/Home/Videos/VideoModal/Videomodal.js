@@ -20,7 +20,6 @@ const Videomodal = ({ openModal, setModal, videoLoading, modal, spinner,video })
                         src={Loading}
                         alt=""
                         className="modal__spinner-style"
-                        fadeIn="none"
                       />
                     </div>
                   ) : null}
@@ -34,7 +33,7 @@ const Videomodal = ({ openModal, setModal, videoLoading, modal, spinner,video })
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 </div>
               </div>

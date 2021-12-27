@@ -95,10 +95,9 @@ const useFirebase = () => {
   }, [auth]);
   useEffect(() => {
     axios
-      .get(`https://pacific-harbor-02002.herokuapp.com/${user.email}`)
+      .get(`https://pacific-harbor-02002.herokuapp.com/getadmin/${user.email}`)
       .then((result) => {
         setAdmin(result.data.admin);
-        console.log(result.data);
       });
   }, [user, authLoading]);
   return {
