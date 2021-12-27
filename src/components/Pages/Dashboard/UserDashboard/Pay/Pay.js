@@ -2,8 +2,10 @@ import React from "react";
 
 const Pay = () => {
   return (
-    <div>
-      <h1>This is Pay</h1>
+    <div className="flex h-screen w-screen items-center justify-center">
+      <h1 className="text-lg font-bold text-gray-800">
+        Payment System is Comming Soon
+      </h1>
     </div>
   );
 };
