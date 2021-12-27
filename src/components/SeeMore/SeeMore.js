@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   fetchHighRatedGames,
   fetchPopularGames,
@@ -13,7 +13,9 @@ import GameCards from "../Shared/Games/GameCard/GameCards";
 
 const SeeMore = () => {
   const { category } = useParams();
-  const { popularGames, highRatedGames } = useSelector((state) => state.Games);
+  const { popularGames, highRatedGames, searchedGames } = useSelector(
+    (state) => state.Games
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     if (category === "rated") {
@@ -37,6 +39,13 @@ const SeeMore = () => {
         {category === "rated" && (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {highRatedGames.map((game) => (
+              <GameCards game={game} key={game.id} />
+            ))}
+          </div>
+        )}
+        {category === "search-result" && (
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {searchedGames.map((game) => (
               <GameCards game={game} key={game.id} />
             ))}
           </div>

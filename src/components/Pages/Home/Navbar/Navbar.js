@@ -2,11 +2,23 @@ import React, { useState } from "react";
 import logo from "../../../../images/tv.png";
 import menuicon from "../../../../images/Menu.png";
 import Menu from "./Menu/Menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { fetchGameSearch } from "../../../../Redux/GameSlice/Fetch/Fetch";
 const Navbar = ({ isbg }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate()
   const { user } = useAuth();
+  const dispatch = useDispatch();
+  const onsubmit = (data) => {
+    const searchText = data.search;
+    dispatch(fetchGameSearch(searchText));
+    navigate(`/seemore/search-result`);
+    
+  };
   return (
     <div
       className={`py-2 absolute top-2 left-0 z-10 w-full ${
@@ -20,11 +32,13 @@ const Navbar = ({ isbg }) => {
             <h1 className="text-white font-bold text-2xl">Game Box</h1>
           </Link>
           <div className="hidden md:block">
-            <form>
+            <form onSubmit={handleSubmit(onsubmit)}>
               <input
                 type="text"
                 placeholder="What do you Want ?"
                 className="font-bold px-4 py-2 text-white bg-transparent border-2 rounded-md"
+                {...register("search")}
+                required
               />
             </form>
           </div>

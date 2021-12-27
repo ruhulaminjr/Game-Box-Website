@@ -40,6 +40,16 @@ export const fetchGameVideo = createAsyncThunk(
     const response = await axios.get(
       "https://raw.githubusercontent.com/ruhulaminjr/Website-Images/main/api/gamedata.json"
     );
-    return await response.data
+    return await response.data;
+  }
+);
+
+export const fetchGameSearch = createAsyncThunk(
+  "Games/fetchSearchGame",
+  async (inputText) => {
+    const response = await axios.get(
+      `https://api.rawg.io/api/games?key=40acf6a51cbc493e972438828aaecd9d&search=${inputText}`
+    );
+    return await response.data.results;
   }
 );
